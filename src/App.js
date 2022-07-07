@@ -38,9 +38,8 @@ function App() {
   }, [books]);
 
   return (
-    <div className="App">
-      <h1>Book Reading App</h1>
-
+    <div className="container">
+      <h1 className="title">Book Reading App</h1>
       <Routes>
         <Route path="" element={<BookLists books={books} />} />
         <Route path="/books/:id" element={<BookDetails books={books} />} />
