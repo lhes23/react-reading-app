@@ -34,6 +34,7 @@ function App() {
         .then((text) => setBookContent(text))
         .catch((err) => console.log(err));
     };
+
     books.map((book) => fetchData(book.fileLocation, book.setBook));
   }, [books]);
 
