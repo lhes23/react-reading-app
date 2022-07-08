@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import book1 from "./books/sample_book_1.txt";
 import book2 from "./books/sample_book_2.txt";
 import BookLists from "./components/BookLists";
