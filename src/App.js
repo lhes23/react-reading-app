@@ -1,42 +1,37 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import book1 from "./books/sample_book_1.txt";
 import book2 from "./books/sample_book_2.txt";
 import BookLists from "./components/BookLists";
 import { Routes, Route } from "react-router-dom";
 import BookDetails from "./components/BookDetails";
 
+let books = [
+  {
+    id: "1",
+    name: "Sample Book 1",
+    fileLocation: book1,
+    content: "",
+  },
+  {
+    id: "2",
+    name: "Sample Book 2",
+    fileLocation: book2,
+    content: "",
+  },
+];
+
 function App() {
-  const [book1Content, setBook1Content] = useState("");
-  const [book2Content, setBook2Content] = useState("");
-
-  const books = [
-    {
-      id: "1",
-      name: "Sample Book 1",
-      fileLocation: book1,
-      setBook: setBook1Content,
-      content: book1Content,
-    },
-    {
-      id: "2",
-      name: "Sample Book 2",
-      fileLocation: book2,
-      setBook: setBook2Content,
-      content: book2Content,
-    },
-  ];
-
   useEffect(() => {
-    const fetchData = async (fileLocation, setBookContent) => {
-      await fetch(fileLocation)
+    const fetchData = async (book) => {
+      await fetch(book.fileLocation)
         .then((res) => res.text())
-        .then((text) => setBookContent(text))
+        .then((text) => (book.content = text))
         .catch((err) => console.log(err));
     };
 
-    books.map((book) => fetchData(book.fileLocation, book.setBook));
-  }, [books]);
+    books.map((book) => fetchData(book));
+  }, []);
 
   return (
     <div className="container">
